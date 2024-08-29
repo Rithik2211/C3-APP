@@ -10,8 +10,11 @@ import CoreMotion
 
 public struct GPSAndBaroView: View {
     @StateObject private var locationViewModel = LocationViewModel()
-    @State private var barometerData: String = "No Barometer Data"
-    @State private var altitudeData: String = "No Altitude Data"
+    @State private var altitudeDataAbsolute: String = "No Absolute Altitude Data"
+    @State private var barometerDataRelative: String = "No Relative Barometer Data"
+    @State private var altitudeDataRelative: String = "No Relative Altitude Data"
+    @State private var isAbsoluteAltitudeUpdating = false
+    @State private var isRelativeAltitudeUpdating = false
 
     private var altimeter = CMAltimeter()
 
@@ -36,7 +39,6 @@ public struct GPSAndBaroView: View {
                             .background(Color.blue)
                             .cornerRadius(8)
                     }
-
                     Button(action: barometerAction) {
                         Text("Barometer")
                             .foregroundColor(.white)
@@ -53,30 +55,75 @@ public struct GPSAndBaroView: View {
                 Spacer()
 
                 VStack {
-                    Text(locationViewModel.locationStatus)
-                        .font(.title)
+                    Text("GPS")
+                        .font(.system(size: 24))
+                        .fontWeight(.bold)
                         .foregroundColor(.black)
-                        .padding()
-                    HStack{
-                        Text("Pressure :")
-                            .font(.title)
-                            .foregroundColor(.black)
-                            .padding()
-                        Text(barometerData)
-                            .font(.title)
-                            .foregroundColor(.black)
-                            .padding()
+                        .padding(.top, 20)
+                    
+                    VStack(alignment: .leading) {
+                        gpsDataView(label: "Lat", value: "\(locationViewModel.location.coordinate.latitude)", readings: "deg")
+                        gpsDataView(label: "Lon", value: "\(locationViewModel.location.coordinate.longitude)", readings: "deg")
+                        gpsDataView(label: "Altitude", value: "\(locationViewModel.location.altitude)", readings: "m")
+                        gpsDataView(label: "Course Accuracy", value: "\(locationViewModel.location.courseAccuracy)", readings: "m")
+                        gpsDataView(label: "Speed Accuracy", value: "\(locationViewModel.location.speedAccuracy)", readings: "m/s")
+                        gpsDataView(label: "Horizontal Accuracy", value: "\(locationViewModel.location.horizontalAccuracy)", readings: "m")
+                        gpsDataView(label: "Vertical Accuracy", value: "\(locationViewModel.location.verticalAccuracy)", readings: "m")
+                        gpsDataView(label: "Ellipsoidal Altitude", value: "\(locationViewModel.location.ellipsoidalAltitude)", readings: "m")
+                        gpsDataView(label: "Timestamp", value: "\(locationViewModel.location.timestamp)", readings: "")
                     }
-                    HStack{
-                        Text("Altitude :")
-                            .font(.title)
-                            .foregroundColor(.blue)
-                            .padding()
-                        Text(altitudeData)
-                            .font(.title)
-                            .foregroundColor(.blue)
-                            .padding()
+                    .foregroundColor(.black)
+                    .padding()
+                    
+                    Text("Barometer")
+                        .font(.system(size: 24))
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                        .padding(.bottom, 1)
+                    Text("Absolute Readings")
+                        .font(.system(size: 20))
+                        .fontWeight(.bold)
+                        .foregroundColor(.gray)
+                    VStack{
+                        HStack{
+                            Text("Altitude : ")
+                                .font(.system(size: 18))
+                                .fontWeight(.bold)
+                                .foregroundColor(.black)
+                            Text(altitudeDataAbsolute)
+                                .font(.system(size: 18))
+                                .foregroundColor(.blue)
+                        }
                     }
+                    .foregroundColor(.black)
+                    .padding()
+                    
+                    Text("Relative Readings")
+                        .font(.system(size: 20))
+                        .fontWeight(.bold)
+                        .foregroundColor(.gray)
+                    VStack{
+                        HStack{
+                            Text("Pressure : ")
+                                .font(.system(size: 18))
+                                .fontWeight(.bold)
+                                .foregroundColor(.black)
+                            Text(barometerDataRelative)
+                                .font(.system(size: 18))
+                                .foregroundColor(.blue)
+                        }
+                        HStack{
+                            Text("Altitude : ")
+                                .font(.system(size: 18))
+                                .fontWeight(.bold)
+                                .foregroundColor(.black)
+                            Text(altitudeDataRelative)
+                                .font(.system(size: 18))
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    .foregroundColor(.black)
+                    .padding()
                 }
 
                 Spacer()
@@ -114,7 +161,17 @@ public struct GPSAndBaroView: View {
     }
 
     private func stopBaro() {
-        altimeter.stopRelativeAltitudeUpdates()
+        if isRelativeAltitudeUpdating {
+            altimeter.stopRelativeAltitudeUpdates()
+            isRelativeAltitudeUpdating = false
+            barometerDataRelative = "\(barometerDataRelative)(Stopped)"
+            altitudeDataRelative = "\(altitudeDataRelative)(Stopped)"
+        }
+        if isAbsoluteAltitudeUpdating {
+            altimeter.stopAbsoluteAltitudeUpdates()
+            isAbsoluteAltitudeUpdating = false
+            altitudeDataAbsolute = "\(altitudeDataAbsolute)(Stopped)"
+        }
     }
 
     private func gpsAction() {
@@ -122,22 +179,42 @@ public struct GPSAndBaroView: View {
     }
 
     private func barometerAction() {
-        guard CMAltimeter.isRelativeAltitudeAvailable() else {
-            barometerData = "Barometer not available"
-            return
+        if CMAltimeter.isAbsoluteAltitudeAvailable() {
+            isAbsoluteAltitudeUpdating = true
+            altimeter.startAbsoluteAltitudeUpdates(to: OperationQueue.main) { (data, error) in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    self.altimeter.stopAbsoluteAltitudeUpdates()
+                    isAbsoluteAltitudeUpdating = false
+                    return
+                }
+                if let altitudeData = data {
+                    let altitude = altitudeData.altitude
+                    self.altitudeDataAbsolute = "\(altitude) m"
+                }
+            }
+        }
+        else {
+            altitudeDataAbsolute = "Absolute Altitude not supported!"
         }
 
-        altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { (data, error) in
-            if let error = error {
-                barometerData = "Error: \(error.localizedDescription)"
-                self.altimeter.stopRelativeAltitudeUpdates()
-                return
+        if CMAltimeter.isRelativeAltitudeAvailable() {
+            isRelativeAltitudeUpdating = true
+            altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { (data, error) in
+                if let error = error {
+                    barometerDataRelative = "Error: \(error.localizedDescription)"
+                    self.altimeter.stopRelativeAltitudeUpdates()
+                    isRelativeAltitudeUpdating = false
+                    return
+                }
+                if let altitudeData = data {
+                    let pressure = altitudeData.pressure.doubleValue * 10  // Convert kPa to hPa
+                    barometerDataRelative = "\(pressure) hPa"
+                    self.altitudeDataRelative = calculateAltitude(from: pressure)
+                }
             }
-            if let altitudeData = data {
-                let pressure = altitudeData.pressure.doubleValue * 10  // Convert kPa to hPa
-                barometerData = "\(pressure) hPa"
-                self.altitudeData = calculateAltitude(from: pressure)
-            }
+        } else {
+            barometerDataRelative = "Relative Altitude not supported"
         }
     }
 
@@ -148,13 +225,26 @@ public struct GPSAndBaroView: View {
     }
 
     private func closeAction() {
-        altimeter.stopRelativeAltitudeUpdates()
+        stopBaro()
         print("Close tapped")
+    }
+    
+    private func gpsDataView(label: String, value: String, readings: String) -> some View {
+        HStack {
+            Text("\(label) :")
+                .font(.system(size: 18))
+                .fontWeight(.bold)
+            Text("\(value) \(readings)")
+                .font(.system(size: 18))
+                .foregroundColor(.blue)
+        }
     }
 }
 
 class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var locationStatus: String = "Tap GPS to start"
+    @Published var location: CLLocation = CLLocation()
+    
     private var locationManager: CLLocationManager?
 
     override init() {
@@ -201,25 +291,22 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-//        locationStatus = "Lat: \(location.coordinate.latitude), Lon: \(location.coordinate.longitude)"
-        locationStatus = """
-        Lat: \(location.coordinate.latitude)
-        Lon: \(location.coordinate.longitude)
-        Altitude: \(location.altitude)
-        Timestamp: \(location.timestamp)
-        Course: \(location.course)
-        Speed: \(location.speed)
-        Horizontal Accuracy: \(location.horizontalAccuracy)
-        Vertical Accuracy: \(location.verticalAccuracy)
-        Ellipsoidal Altitude: \(location.ellipsoidalAltitude)
-        """
-        print("coordinate: \(location.coordinate), altitude: \(location.altitude), timestamp : \(location.timestamp), course: \(location.course), speed: \(location.speed), horizontalAccuracy : \(location.horizontalAccuracy), verticalAccuracy: \(location.verticalAccuracy), ellipsoidalAltitude : \(location.ellipsoidalAltitude)")
+        self.location = location // Save the latest location
+            locationStatus = """
+            Lat: \(location.coordinate.latitude)
+            Lon: \(location.coordinate.longitude)
+            Altitude: \(location.altitude)
+            Timestamp: \(location.timestamp)
+            Course Accuracy: \(location.courseAccuracy)
+            Speed Accuracy: \(location.speedAccuracy)
+            Horizontal Accuracy: \(location.horizontalAccuracy)
+            Vertical Accuracy: \(location.verticalAccuracy)
+            Ellipsoidal Altitude: \(location.ellipsoidalAltitude)
+            """
+        print("coordinate: \(location.coordinate), altitude: \(location.altitude), timestamp : \(location.timestamp), course: \(location.course), speed: \(location.speed), horizontalAccuracy : \(location.horizontalAccuracy), verticalAccuracy: \(location.verticalAccuracy), ellipsoidalAltitude : \(location.ellipsoidalAltitude )")
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationStatus = "Error: \(error.localizedDescription)"
     }
 }
-
-
-
