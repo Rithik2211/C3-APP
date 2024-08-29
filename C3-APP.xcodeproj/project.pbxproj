@@ -14,6 +14,8 @@
 		A6C26AA02C6CCB3F005C27B2 /* C3_APPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C26A9F2C6CCB3F005C27B2 /* C3_APPTests.swift */; };
 		A6C26AAA2C6CCB3F005C27B2 /* C3_APPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C26AA92C6CCB3F005C27B2 /* C3_APPUITests.swift */; };
 		A6C26AAC2C6CCB3F005C27B2 /* C3_APPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C26AAB2C6CCB3F005C27B2 /* C3_APPUITestsLaunchTests.swift */; };
+		A6C26B802C789AA9005C27B2 /* GpsAndBaro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C26B7F2C789AA9005C27B2 /* GpsAndBaro.swift */; };
+		A6C26B822C789B01005C27B2 /* DataUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C26B812C789B00005C27B2 /* DataUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,27 +35,36 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A6C26B302C6CDF9F005C27B2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		A6C26A8B2C6CCB3D005C27B2 /* C3-APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "C3-APP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C26A8E2C6CCB3D005C27B2 /* C3_APPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C3_APPApp.swift; sourceTree = "<group>"; };
 		A6C26A902C6CCB3D005C27B2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A6C26A922C6CCB3F005C27B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6C26A952C6CCB3F005C27B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A6C26A9B2C6CCB3F005C27B2 /* C3-APPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "C3-APPTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C26A9F2C6CCB3F005C27B2 /* C3_APPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C3_APPTests.swift; sourceTree = "<group>"; };
-		A6C26AA52C6CCB3F005C27B2 /* C3-APPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "C3-APPUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C26AA92C6CCB3F005C27B2 /* C3_APPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C3_APPUITests.swift; sourceTree = "<group>"; };
 		A6C26AAB2C6CCB3F005C27B2 /* C3_APPUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C3_APPUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A6C26B7F2C789AA9005C27B2 /* GpsAndBaro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpsAndBaro.swift; sourceTree = "<group>"; };
+		A6C26B812C789B00005C27B2 /* DataUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUI.swift; sourceTree = "<group>"; };
+		A6FF36832C78A35500BC926B /* C3-APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "C3-APP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6FF36842C78A35500BC926B /* C3-APPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "C3-APPTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6FF36852C78A35500BC926B /* C3-APPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "C3-APPUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6FF36862C7DD90A00BC926B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A6C26A882C6CCB3D005C27B2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A6C26A982C6CCB3F005C27B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,6 +73,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A6C26AA22C6CCB3F005C27B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6C26B2D2C6CDF8C005C27B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -77,27 +95,22 @@
 				A6C26A8D2C6CCB3D005C27B2 /* C3-APP */,
 				A6C26A9E2C6CCB3F005C27B2 /* C3-APPTests */,
 				A6C26AA82C6CCB3F005C27B2 /* C3-APPUITests */,
-				A6C26A8C2C6CCB3D005C27B2 /* Products */,
+				A6FF36832C78A35500BC926B /* C3-APP.app */,
+				A6FF36842C78A35500BC926B /* C3-APPTests.xctest */,
+				A6FF36852C78A35500BC926B /* C3-APPUITests.xctest */,
 			);
-			sourceTree = "<group>";
-		};
-		A6C26A8C2C6CCB3D005C27B2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A6C26A8B2C6CCB3D005C27B2 /* C3-APP.app */,
-				A6C26A9B2C6CCB3F005C27B2 /* C3-APPTests.xctest */,
-				A6C26AA52C6CCB3F005C27B2 /* C3-APPUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		A6C26A8D2C6CCB3D005C27B2 /* C3-APP */ = {
 			isa = PBXGroup;
 			children = (
+				A6FF36862C7DD90A00BC926B /* Info.plist */,
 				A6C26A8E2C6CCB3D005C27B2 /* C3_APPApp.swift */,
 				A6C26A902C6CCB3D005C27B2 /* ContentView.swift */,
 				A6C26A922C6CCB3F005C27B2 /* Assets.xcassets */,
 				A6C26A942C6CCB3F005C27B2 /* Preview Content */,
+				A6C26B7F2C789AA9005C27B2 /* GpsAndBaro.swift */,
+				A6C26B812C789B00005C27B2 /* DataUI.swift */,
 			);
 			path = "C3-APP";
 			sourceTree = "<group>";
@@ -135,8 +148,9 @@
 			buildConfigurationList = A6C26AAF2C6CCB3F005C27B2 /* Build configuration list for PBXNativeTarget "C3-APP" */;
 			buildPhases = (
 				A6C26A872C6CCB3D005C27B2 /* Sources */,
-				A6C26A882C6CCB3D005C27B2 /* Frameworks */,
 				A6C26A892C6CCB3D005C27B2 /* Resources */,
+				A6C26B2D2C6CDF8C005C27B2 /* Frameworks */,
+				A6C26B302C6CDF9F005C27B2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,7 +158,7 @@
 			);
 			name = "C3-APP";
 			productName = "C3-APP";
-			productReference = A6C26A8B2C6CCB3D005C27B2 /* C3-APP.app */;
+			productReference = A6FF36832C78A35500BC926B /* C3-APP.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A6C26A9A2C6CCB3F005C27B2 /* C3-APPTests */ = {
@@ -162,7 +176,7 @@
 			);
 			name = "C3-APPTests";
 			productName = "C3-APPTests";
-			productReference = A6C26A9B2C6CCB3F005C27B2 /* C3-APPTests.xctest */;
+			productReference = A6FF36842C78A35500BC926B /* C3-APPTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		A6C26AA42C6CCB3F005C27B2 /* C3-APPUITests */ = {
@@ -180,7 +194,7 @@
 			);
 			name = "C3-APPUITests";
 			productName = "C3-APPUITests";
-			productReference = A6C26AA52C6CCB3F005C27B2 /* C3-APPUITests.xctest */;
+			productReference = A6FF36852C78A35500BC926B /* C3-APPUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -215,7 +229,7 @@
 				Base,
 			);
 			mainGroup = A6C26A822C6CCB3D005C27B2;
-			productRefGroup = A6C26A8C2C6CCB3D005C27B2 /* Products */;
+			productRefGroup = A6C26A822C6CCB3D005C27B2;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -258,7 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6C26A912C6CCB3D005C27B2 /* ContentView.swift in Sources */,
+				A6C26B802C789AA9005C27B2 /* GpsAndBaro.swift in Sources */,
 				A6C26A8F2C6CCB3D005C27B2 /* C3_APPApp.swift in Sources */,
+				A6C26B822C789B01005C27B2 /* DataUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,8 +438,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"C3-APP/Preview Content\"";
+				DEVELOPMENT_TEAM = QC33VHA59S;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "C3-APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -450,8 +473,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"C3-APP/Preview Content\"";
+				DEVELOPMENT_TEAM = QC33VHA59S;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "C3-APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

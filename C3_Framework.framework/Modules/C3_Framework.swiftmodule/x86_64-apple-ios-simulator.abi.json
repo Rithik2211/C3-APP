@@ -1,0 +1,204 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "C3_Framework"
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "C3_Framework"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SDKUIView",
+        "printedName": "SDKUIView",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "gpsAction",
+            "printedName": "gpsAction()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12C3_Framework9SDKUIViewV9gpsActionyyF",
+            "mangledName": "$s12C3_Framework9SDKUIViewV9gpsActionyyF",
+            "moduleName": "C3_Framework",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "barometerAction",
+            "printedName": "barometerAction()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12C3_Framework9SDKUIViewV15barometerActionyyF",
+            "mangledName": "$s12C3_Framework9SDKUIViewV15barometerActionyyF",
+            "moduleName": "C3_Framework",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "closeAction",
+            "printedName": "closeAction()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12C3_Framework9SDKUIViewV11closeActionyyF",
+            "mangledName": "$s12C3_Framework9SDKUIViewV11closeActionyyF",
+            "moduleName": "C3_Framework",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "body",
+            "printedName": "body",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpaqueTypeArchetype",
+                "printedName": "some SwiftUI.View",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "View",
+                    "printedName": "SwiftUI.View",
+                    "usr": "s:7SwiftUI4ViewP"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12C3_Framework9SDKUIViewV4bodyQrvp",
+            "mangledName": "$s12C3_Framework9SDKUIViewV4bodyQrvp",
+            "moduleName": "C3_Framework",
+            "declAttributes": [
+              "Custom",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpaqueTypeArchetype",
+                    "printedName": "some SwiftUI.View",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "View",
+                        "printedName": "SwiftUI.View",
+                        "usr": "s:7SwiftUI4ViewP"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12C3_Framework9SDKUIViewV4bodyQrvg",
+                "mangledName": "$s12C3_Framework9SDKUIViewV4bodyQrvg",
+                "moduleName": "C3_Framework",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SDKUIView",
+                "printedName": "C3_Framework.SDKUIView",
+                "usr": "s:12C3_Framework9SDKUIViewV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12C3_Framework9SDKUIViewVACycfc",
+            "mangledName": "$s12C3_Framework9SDKUIViewVACycfc",
+            "moduleName": "C3_Framework",
+            "implicit": true,
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:12C3_Framework9SDKUIViewV",
+        "mangledName": "$s12C3_Framework9SDKUIViewV",
+        "moduleName": "C3_Framework",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "View",
+            "printedName": "View",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Body",
+                "printedName": "Body",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpaqueTypeArchetype",
+                    "printedName": "some SwiftUI.View",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "View",
+                        "printedName": "SwiftUI.View",
+                        "usr": "s:7SwiftUI4ViewP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7SwiftUI4ViewP",
+            "mangledName": "$s7SwiftUI4ViewP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

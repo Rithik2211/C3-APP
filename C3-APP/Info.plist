@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+        </dict>
+    </array>
+    
+    <!-- Description for accessing Motion Data (Barometer) -->
+    <key>NSMotionUsageDescription</key>
+    <string>This app uses motion data to provide accurate altitude and pressure readings.</string>
+    
+    <!-- Description for accessing Location Data (GPS) -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app uses your location to provide GPS coordinates.</string>
+</dict>
+</plist>

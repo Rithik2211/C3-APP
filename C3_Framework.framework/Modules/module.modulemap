@@ -1,0 +1,6 @@
+framework module C3_Framework {
+  umbrella header "C3_Framework.h"
+  export *
+
+  module * { export * }
+}
